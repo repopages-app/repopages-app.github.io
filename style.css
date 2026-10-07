@@ -62,12 +62,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
   .cta{display:block;width:100%;text-align:center;margin:0 0 12px;box-sizing:border-box}
   .menu-btn{display:inline-flex}
   header.top .wrap{flex-wrap:wrap;height:auto;min-height:0;padding-top:12px;padding-bottom:12px}
-  header.top.open .wrap{padding-bottom:0}
-  header.top.open nav{margin-top:12px}
-  nav{flex-basis:100%;max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0}
+  nav{flex-basis:100%;max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0;margin:0}
   nav a{display:block;margin:0;padding:12px 0;font-size:17px;border-bottom:1px solid rgba(255,255,255,.08)}
-  nav a:first-child{border-top:1px solid rgba(255,255,255,.12)}
-  nav a:last-child{border-bottom:0;margin-bottom:12px}
+  nav a:first-child{border-top:1px solid rgba(255,255,255,.12);margin-top:12px}
+  nav a:last-child{border-bottom:0}
   header.top.open nav{max-height:400px}
   section{padding:40px 0}
   section h2{font-size:26px}
