@@ -1,7 +1,7 @@
 // Google Analytics 4, loaded only after the visitor accepts. The choice is kept in localStorage
 // ("ga-consent": "yes" | "no"); the footer's "Cookie settings" link shows the bar again.
 (function () {
-  var ID = 'G-XXXXXXXXXX'; // GA4 measurement ID
+  var ID = 'G-N6J84FWH8J'; // GA4 measurement ID
   var KEY = 'ga-consent';
   function load() {
     if (window.__gaLoaded || ID.indexOf('XXXX') !== -1) return;
