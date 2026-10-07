@@ -116,7 +116,12 @@ jobs:
 
 <footer><div class="wrap">
   <span>RepoPages for Confluence. Not affiliated with Atlassian.</span>
-  <span><a href="privacy.html">Privacy policy</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
+  <span><a href="privacy.html">Privacy policy</a> · <a href="#" onclick="showConsent();return false">Cookie settings</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
 </div></footer>
+<div id="consent" class="consent" hidden role="dialog" aria-label="Cookie choice">
+  <div class="wrap"><span>This site can use Google Analytics to count visits. No analytics runs unless you accept. <a href="privacy.html#analytics">Details</a></span>
+  <span class="consent-actions"><button type="button" data-decline>Decline</button><button type="button" class="primary" data-accept>Accept</button></span></div>
+</div>
+<script src="analytics.js" defer></script>
 </body>
 </html>

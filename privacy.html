@@ -17,7 +17,7 @@
 
 <main class="wrap doc">
 <h1>Privacy policy</h1>
-<p class="date">RepoPages for Confluence · effective 2026-10-07</p>
+<p class="date">RepoPages for Confluence · effective 2026-10-07, updated 2026-10-07 (website analytics)</p>
 
 <p>RepoPages for Confluence ("RepoPages", "the app") is an app for Atlassian Confluence Cloud, developed and operated by Filip Zoričić ("the developer"). It is built on Atlassian Forge and runs entirely on Atlassian's infrastructure. This policy describes what data the app handles, where it is kept and who can see it.</p>
 
@@ -53,8 +53,8 @@
 <h2>Security</h2>
 <p>Every push is authenticated with an HMAC-SHA256 signature over the request body, using the per-repository secret. Secrets are shown once when created, kept in Forge's encrypted secret storage, and can be rotated from the settings screen. The app requests only the Confluence permissions it needs: reading and writing pages and attachments, reading spaces, and its own app storage.</p>
 
-<h2>This website</h2>
-<p>This website is static. It sets no cookies and uses no analytics or tracking.</p>
+<h2 id="analytics">This website</h2>
+<p>This website is static. It uses Google Analytics 4 to count visits, but only after you accept that in the bar at the bottom of the page. Until you accept, no analytics script is loaded and no cookie is set. If you accept, your browser loads Google's script, which sets Google's cookies and sends Google the pages you open, the site you came from, your browser and device type, and an approximate location derived from your IP address; Google processes that under <a href="https://policies.google.com/privacy">Google's privacy policy</a>. We see only aggregated reports, never individual visitors. Your choice is stored in your browser and can be changed at any time with the "Cookie settings" link in the footer.</p>
 
 <h2>Changes and contact</h2>
 <p>Changes to this policy are published on this page with a new effective date. Questions about the app or this policy: open an issue at <a href="https://github.com/repopages-app/ci/issues">github.com/repopages-app/ci/issues</a>.</p>
@@ -62,7 +62,12 @@
 
 <footer><div class="wrap">
   <span>RepoPages for Confluence. Not affiliated with Atlassian.</span>
-  <span><a href="privacy.html">Privacy policy</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
+  <span><a href="privacy.html">Privacy policy</a> · <a href="#" onclick="showConsent();return false">Cookie settings</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
 </div></footer>
+<div id="consent" class="consent" hidden role="dialog" aria-label="Cookie choice">
+  <div class="wrap"><span>This site can use Google Analytics to count visits. No analytics runs unless you accept. <a href="privacy.html#analytics">Details</a></span>
+  <span class="consent-actions"><button type="button" data-decline>Decline</button><button type="button" class="primary" data-accept>Accept</button></span></div>
+</div>
+<script src="analytics.js" defer></script>
 </body>
 </html>
