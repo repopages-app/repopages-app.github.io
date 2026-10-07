@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://repopages-app.github.io/sitemap.xml
