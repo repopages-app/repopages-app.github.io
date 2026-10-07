@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RepoPages for Confluence</title>
+<meta name="description" content="Markdown and diagrams from Git as real Confluence pages. Pushed by your CI on every commit, searchable, with history.">
+<link rel="icon" href="img/icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><img src="img/icon.svg" alt="">RepoPages</a>
+  <nav><a href="#how">How it works</a><a href="#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="privacy.html">Privacy</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>RepoPages <span>for Confluence</span></h1>
+    <p>Markdown and diagrams from Git as real Confluence pages. Pushed by your CI on every commit, searchable, with history.</p>
+    <a class="cta" href="#setup">Set up in five minutes</a>
+    <a class="cta alt" href="https://github.com/repopages-app/demo-docs">See the demo repo</a>
+  </div>
+  <img src="img/synced-page.png" alt="A Confluence page written by RepoPages, with the commit byline">
+</div></div>
+
+<section><div class="wrap">
+  <h2>Documentation that lives with the code, readable by everyone</h2>
+  <p class="lead">Developers keep writing Markdown next to the code. Everyone else reads it in Confluence, where they already are.</p>
+
+  <div class="feature">
+    <div>
+      <h3>Real pages, written on every commit</h3>
+      <p>Your CI sends the files a commit changed; RepoPages creates or updates one Confluence page per Markdown file within seconds.</p>
+      <p>Pages are searchable, versioned, exportable to PDF and Word, and readable on mobile, like any page a person wrote. Each one carries a byline with the commit that wrote it.</p>
+    </div>
+    <img src="img/synced-page.png" alt="A synced page with the byline Synced from fastapi/fastapi, view commit">
+  </div>
+
+  <div class="feature">
+    <div>
+      <h3>Diagrams and structure survive the trip</h3>
+      <p>Mermaid and PlantUML blocks become crisp SVG images, with the source kept searchable underneath. Folders become parent pages, relative links become page links, front matter and the first heading set the title.</p>
+    </div>
+    <img src="img/diagram.png" alt="A rendered Mermaid sequence diagram on a Confluence page, with its source collapsed below">
+  </div>
+
+  <div class="feature">
+    <div>
+      <h3>No Git credentials, nothing leaves Atlassian</h3>
+      <p>RepoPages never connects to your Git host. The push is signed with a secret you create in Confluence, so the app holds no token and makes no outbound calls. Eligible for Runs on Atlassian.</p>
+      <p>Works with GitHub, GitLab, Bitbucket, Jenkins or any CI that can run a script or a container.</p>
+    </div>
+    <img src="img/settings.png" alt="The RepoPages settings screen in Confluence with three mapped repositories">
+  </div>
+</div></section>
+
+<section id="how" style="background:var(--card)"><div class="wrap">
+  <h2>How it works</h2>
+  <p class="lead">Three steps, no agent, no polling.</p>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><b>Map a folder to a space</b>On the RepoPages settings screen in Confluence: repository, folder, target space, optional parent page. You get a sync URL and a signing secret.</div>
+    <div class="step"><span class="n">2</span><b>Add one step to your pipeline</b>The GitHub Action, the Docker image, or a single Python file. Store the URL and the secret in your CI's secret store.</div>
+    <div class="step"><span class="n">3</span><b>Push</b>Changed files are rendered, signed and sent. RepoPages writes the pages. Renames move pages, deletions archive them, unchanged files create no new version.</div>
+  </div>
+</div></section>
+
+<section id="setup"><div class="wrap">
+  <h2>Setup on GitHub</h2>
+  <p class="lead">One workflow file. GitLab CI, Jenkins and any other CI use the <a href="https://github.com/repopages-app/ci#gitlab-ci-and-other-runners-docker-image">Docker image</a> or the <a href="https://github.com/repopages-app/ci#the-script">script</a>.</p>
+<pre><code># .github/workflows/repopages.yml
+name: RepoPages
+on:
+  push:
+    branches: [main]
+    paths: ['**/*.md']
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: repopages-app/ci@v1
+        with:
+          url: ${{ secrets.REPOPAGES_URL }}
+          secret: ${{ secrets.REPOPAGES_SECRET }}
+          prefix: docs/</code></pre>
+  <p>Run it once by hand with <code>full_import</code> to create pages for everything that already exists. From then on every merge sends only what changed. Full documentation in the <a href="https://github.com/repopages-app/ci">client repository</a>.</p>
+</div></section>
+
+<section style="background:var(--card)"><div class="wrap">
+  <h2>Built for security review</h2>
+  <div class="facts">
+    <div class="fact"><b>No egress</b>The app calls nothing outside Atlassian. Your CI calls Atlassian. Eligible for Runs on Atlassian.</div>
+    <div class="fact"><b>No Git token in Confluence</b>Each repository has its own signing secret, kept in Atlassian's secret storage, rotatable from the settings screen.</div>
+    <div class="fact"><b>Minimal data</b>RepoPages stores mappings, page ids and content hashes. Your documents live in Confluence as pages, nowhere else. See the <a href="privacy.html">privacy policy</a>.</div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>RepoPages for Confluence. Not affiliated with Atlassian.</span>
+  <span><a href="privacy.html">Privacy policy</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
+</div></footer>
+</body>
+</html>

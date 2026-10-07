@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy · RepoPages for Confluence</title>
+<link rel="icon" href="img/icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><img src="img/icon.svg" alt="">RepoPages</a>
+  <nav><a href="/#how">How it works</a><a href="/#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
+</div></header>
+
+<main class="wrap doc">
+<h1>Privacy policy</h1>
+<p class="date">RepoPages for Confluence · effective 2026-10-07</p>
+
+<p>RepoPages for Confluence ("RepoPages", "the app") is an app for Atlassian Confluence Cloud, developed and operated by Filip Zoričić ("the developer"). It is built on Atlassian Forge and runs entirely on Atlassian's infrastructure. This policy describes what data the app handles, where it is kept and who can see it.</p>
+
+<h2>What the app does</h2>
+<p>Your continuous-integration system (CI) sends Markdown files and rendered diagram images from your Git repository to the app, signed with a secret you created in Confluence. The app writes them as pages and attachments into a Confluence space you chose. The app never connects to your Git host or to any other system outside Atlassian.</p>
+
+<h2>Data the app receives</h2>
+<p>With every push from your CI, the app receives: the repository name, the branch and commit identifier, the paths and contents of the Markdown files that changed, images rendered from diagram blocks in those files, and a signature. The contents are converted into Confluence pages and attachments in your site and are not kept by the app in any other form.</p>
+
+<h2>Data the app stores</h2>
+<p>The app keeps a small amount of configuration and bookkeeping data in Atlassian's app storage for your Confluence site (Forge storage), separately for each installation:</p>
+<table>
+<tr><th>Data</th><th>Purpose</th></tr>
+<tr><td>Mappings: repository name, folder, target space, optional parent page, include and exclude patterns</td><td>To know where each repository's pages go</td></tr>
+<tr><td>One signing secret per repository, in Forge's secret storage</td><td>To verify that a push really comes from your CI</td></tr>
+<tr><td>For each synced file: its path, the id of its Confluence page and a hash of its content</td><td>To update the right page and skip unchanged files</td></tr>
+<tr><td>Run summaries: counts of created, updated and archived pages, the paths of files that failed and the error message, the status and time of the last request</td><td>To show the sync status on the settings screen</td></tr>
+</table>
+<p>The app does not store copies of your documents, user profiles, or any data about the people who read the pages.</p>
+
+<h2>Logs</h2>
+<p>The app writes operational log lines to Atlassian's Forge logging for the app. A log line can contain the repository name, the commit identifier, file paths and error messages. Log lines never contain file contents or secrets. Logs are retained by Atlassian according to the Forge platform's log retention.</p>
+
+<h2>Where data is processed</h2>
+<p>All processing happens inside Atlassian's Forge platform in the region of your Confluence site, under <a href="https://www.atlassian.com/legal/privacy-policy">Atlassian's privacy policy</a> and <a href="https://www.atlassian.com/trust">trust commitments</a>. The app has no outbound network access: it does not send data to the developer, to third parties, to analytics services or to any server outside Atlassian. The app is eligible for Atlassian's "Runs on Atlassian" program for this reason.</p>
+
+<h2>Who can access the data</h2>
+<p>Pages and attachments written by the app belong to your Confluence site and are governed by your site's permissions. Configuration data on the settings screen is visible to Confluence administrators of your site. The developer can see the app's logs and aggregated metrics through the Atlassian developer console, which includes repository names and file paths but not contents. The developer does not access the stored data of an installation except to investigate a support request you have raised, using tooling provided by Atlassian.</p>
+
+<h2>Data retention and deletion</h2>
+<p>Pages and attachments stay in your Confluence site as your content; removing a file from the repository archives its page, it never deletes it. Deleting a mapping on the settings screen removes that mapping, its secret and its page bookkeeping from app storage. Uninstalling the app stops all processing; the remaining app storage is then subject to Atlassian's Forge storage lifecycle for uninstalled apps.</p>
+
+<h2>Security</h2>
+<p>Every push is authenticated with an HMAC-SHA256 signature over the request body, using the per-repository secret. Secrets are shown once when created, kept in Forge's encrypted secret storage, and can be rotated from the settings screen. The app requests only the Confluence permissions it needs: reading and writing pages and attachments, reading spaces, and its own app storage.</p>
+
+<h2>This website</h2>
+<p>This website is static. It sets no cookies and uses no analytics or tracking.</p>
+
+<h2>Changes and contact</h2>
+<p>Changes to this policy are published on this page with a new effective date. Questions about the app or this policy: open an issue at <a href="https://github.com/repopages-app/ci/issues">github.com/repopages-app/ci/issues</a>.</p>
+</main>
+
+<footer><div class="wrap">
+  <span>RepoPages for Confluence. Not affiliated with Atlassian.</span>
+  <span><a href="privacy.html">Privacy policy</a> · <a href="https://github.com/repopages-app/ci/issues">Support</a> · <a href="https://github.com/repopages-app">GitHub</a></span>
+</div></footer>
+</body>
+</html>
