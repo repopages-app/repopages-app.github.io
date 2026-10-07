@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top"><div class="wrap">
+<header class="top" id="top"><div class="wrap">
   <a class="brand" href="/"><img src="img/icon.svg" alt="">RepoPages</a>
-  <nav><a href="#how">How it works</a><a href="#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="privacy.html">Privacy</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false" onclick="var h=document.getElementById('top');h.classList.toggle('open');this.setAttribute('aria-expanded',h.classList.contains('open'))">&#9776;</button>
+  <nav onclick="document.getElementById('top').classList.remove('open')"><a href="#how">How it works</a><a href="#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="privacy.html">Privacy</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -59,9 +60,9 @@
   <h2>How it works</h2>
   <p class="lead">Three steps, no agent, no polling.</p>
   <div class="steps">
-    <div class="step"><span class="n">1</span><b>Map a folder to a space</b>On the RepoPages settings screen in Confluence: repository, folder, target space, optional parent page. You get a sync URL and a signing secret.</div>
-    <div class="step"><span class="n">2</span><b>Add one step to your pipeline</b>The GitHub Action, the Docker image, or a single Python file. Store the URL and the secret in your CI's secret store.</div>
-    <div class="step"><span class="n">3</span><b>Push</b>Changed files are rendered, signed and sent. RepoPages writes the pages. Renames move pages, deletions archive them, unchanged files create no new version.</div>
+    <div class="step"><span class="n">1</span><b>Map a folder to a space</b><p>On the RepoPages settings screen in Confluence: repository, folder, target space, optional parent page. You get a sync URL and a signing secret.</p></div>
+    <div class="step"><span class="n">2</span><b>Add one step to your pipeline</b><p>The GitHub Action, the Docker image, or a single Python file. Store the URL and the secret in your CI's secret store.</p></div>
+    <div class="step"><span class="n">3</span><b>Push</b><p>Changed files are rendered, signed and sent. RepoPages writes the pages. Renames move pages, deletions archive them, unchanged files create no new version.</p></div>
   </div>
 </div></section>
 

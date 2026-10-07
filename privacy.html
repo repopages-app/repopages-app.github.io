@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top"><div class="wrap">
+<header class="top" id="top"><div class="wrap">
   <a class="brand" href="/"><img src="img/icon.svg" alt="">RepoPages</a>
-  <nav><a href="/#how">How it works</a><a href="/#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
+  <button class="menu-btn" aria-label="Menu" aria-expanded="false" onclick="var h=document.getElementById('top');h.classList.toggle('open');this.setAttribute('aria-expanded',h.classList.contains('open'))">&#9776;</button>
+  <nav onclick="document.getElementById('top').classList.remove('open')"><a href="/#how">How it works</a><a href="/#setup">Setup</a><a href="https://github.com/repopages-app/ci">GitHub</a><a href="https://github.com/repopages-app/ci/issues">Support</a></nav>
 </div></header>
 
 <main class="wrap doc">
