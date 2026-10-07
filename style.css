@@ -1,6 +1,6 @@
 :root{--navy:#1B3A5C;--teal:#5FD3C4;--ink:#172b4d;--muted:#5e6c84;--bg:#ffffff;--card:#f4f5f7;--line:#dfe1e6}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;background:linear-gradient(var(--navy) 0 50%,var(--bg) 50% 100%)}
 body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
 a{color:#0052cc}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
@@ -10,7 +10,8 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;h
 .brand img{width:32px;height:32px;border-radius:7px}
 nav a{color:rgba(255,255,255,.85);text-decoration:none;margin-left:22px;font-size:15px}
 nav a:hover{color:#fff}
-.menu-btn{display:none;background:none;border:1.5px solid rgba(255,255,255,.35);color:#fff;border-radius:8px;width:44px;height:40px;font-size:22px;line-height:1;cursor:pointer}
+.menu-btn{display:none;align-items:center;justify-content:center;padding:0;background:none;border:1.5px solid rgba(255,255,255,.35);color:#fff;border-radius:8px;width:44px;height:40px;cursor:pointer}
+.menu-btn svg{display:block;width:22px;height:22px}
 header.top{position:relative}
 .hero{background:var(--navy);color:#fff;padding:56px 0 64px}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
@@ -57,11 +58,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
   .hero p{font-size:18px}
   .steps,.facts{grid-template-columns:1fr}
   .cta{display:block;width:100%;text-align:center;margin:0 0 12px;box-sizing:border-box}
-  .menu-btn{display:inline-block}
-  nav{display:none;position:absolute;left:0;right:0;top:64px;background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding:8px 20px 16px;z-index:10;box-shadow:0 16px 30px rgba(0,0,0,.3)}
+  .menu-btn{display:inline-flex}
+  header.top .wrap{flex-wrap:wrap;height:auto;min-height:64px}
+  nav{flex-basis:100%;max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0}
   nav a{display:block;margin:0;padding:12px 0;font-size:17px;border-bottom:1px solid rgba(255,255,255,.08)}
-  nav a:last-child{border-bottom:0}
-  header.top.open nav{display:block}
+  nav a:first-child{border-top:1px solid rgba(255,255,255,.12)}
+  nav a:last-child{border-bottom:0;margin-bottom:12px}
+  header.top.open nav{max-height:400px}
   section{padding:40px 0}
   section h2{font-size:26px}
 }
