@@ -25,6 +25,18 @@
     b.querySelector('[data-decline]').onclick = function () { write('no'); hide(); };
   }
   window.showConsent = show;
+  // Consent is asked only where the law requires it: the EU/EEA, the UK and Switzerland, detected from the
+  // browser's time zone (no request to anyone). An unknown time zone counts as Europe. Elsewhere the
+  // counter runs from the first page view; "Cookie settings" in the footer can still switch it off.
+  function needsConsent() {
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (!tz) return true;
+    return /^(Europe\/|Atlantic\/(Canary|Madeira|Azores|Faroe|Reykjavik|Jan_Mayen)|Arctic\/)/.test(tz);
+  }
   var c = read();
-  if (c === 'yes') load(); else if (c !== 'no') show();
+  if (c === 'yes') load();
+  else if (c === 'no') {}
+  else if (needsConsent()) show();
+  else load();
 })();
