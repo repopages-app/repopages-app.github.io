@@ -84,7 +84,7 @@
     <div>
       <h3>No Git credentials, nothing leaves Atlassian</h3>
       <p>RepoPages never connects to your Git host. The push is signed with a secret you create in Confluence, so the app holds no token and makes no outbound calls. Eligible for Runs on Atlassian.</p>
-      <p>Works with GitHub, GitLab, Bitbucket, Jenkins or any CI that can run a script or a container.</p>
+      <p>Private, self-hosted and VPN-only repositories work the same way, because nothing ever has to reach them: your CI already has the files. GitHub, GitLab, Bitbucket, Jenkins or any CI that can run a script or a container.</p>
     </div>
     <img src="img/settings.png" alt="The RepoPages settings screen in Confluence with three mapped repositories">
   </div>
@@ -128,6 +128,7 @@ jobs:
   <h2>Built for security review</h2>
   <div class="facts">
     <div class="fact"><b>No egress</b>The app calls nothing outside Atlassian. Your CI calls Atlassian. Eligible for Runs on Atlassian.</div>
+    <div class="fact"><b>Private repos, no OAuth</b>No GitHub app, no OAuth grant, no access to your Git host. The repository can be private, self-hosted or behind a VPN; only your CI reads it.</div>
     <div class="fact"><b>No Git token in Confluence</b>Each repository has its own signing secret, kept in Atlassian's secret storage, rotatable from the settings screen.</div>
     <div class="fact"><b>Nothing to review but the pages</b>RepoPages writes pages into your site and keeps no copy. What a security review sees is Confluence, which it already approved. See the <a href="privacy.html">privacy policy</a>.</div>
   </div>
